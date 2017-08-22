@@ -1,32 +1,63 @@
-<!--
-The markup in NativeScript apps contains a series of user interface components, each
-of which NativeScript renders with a platform-specific iOS or Android native control.
-You can find a full list of user interface components you can use in your app at
-https://docs.nativescript.org/ui/components.
--->
+
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
-    <!--
-    The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
-    http://docs.nativescript.org/ui/action-bar
-    -->
+
     <Page.actionBar>
         <ActionBar title="My App" icon="" class="action-bar">
         </ActionBar>
     </Page.actionBar>
-    <!--
-    The StackLayout stacks UI components on the screen—either vertically or horizontally.
-    In this case, the StackLayout does vertical stacking; you can change the stacking to
-    horizontal by applying a orientation="horizontal" attribute to the <StackLayout> element.
-    You can learn more about NativeScript layouts at
-    https://docs.nativescript.org/ui/layout-containers.
 
-    These components make use of several CSS class names that are part of the NativeScript
-    core theme, such as p-20, btn, h2, and text-center. You can view a full list of the
-    class names available for styling your app at https://docs.nativescript.org/ui/theme.
-    -->
     <StackLayout class="p-20">
-        <Label text="Tap the button" class="h1 text-center"/>
-        <Button text="TAP" tap="{{ onTap }}" class="btn btn-primary btn-active"/>
-        <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>
+
+        <Label class="body m-b-10" text="Image should be first..." />
+
+        <StackLayout class="m-b-20">
+            <StackLayout class="align-left">
+                <FlexboxLayout class="comment-item">
+                    <FlexboxLayout id="comment-text" class="text">
+                        <Label class="text-normal" textWrap="true" text="Lorem ipsum" />
+                    </FlexboxLayout>
+                    <StackLayout id="comment-avatar" class="avatar">
+                        <Image src="https://placehold.it/40x40" style="width:40" />
+                    </StackLayout>
+                </FlexboxLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <Label class="body m-b-10" text="Label should be first..." />
+
+        <StackLayout class="m-b-20">
+            <StackLayout class="align-right">
+                <FlexboxLayout class="comment-item">
+                    <FlexboxLayout id="comment-text" class="text">
+                        <Label class="text-normal" textWrap="true" text="Lorem ipsum" />
+                    </FlexboxLayout>
+                    <StackLayout id="comment-avatar" class="avatar">
+                        <Image src="https://placehold.it/40x40" style="width:40" />
+                    </StackLayout>
+                </FlexboxLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <Label class="h2" text="Repeater..." />
+
+        <Repeater id="rptComments" items="{{ comments }}">       
+            <Repeater.itemTemplate>
+
+                <StackLayout class="m-b-20">
+                    <Label class="body m-b-10" text="{{ $parents['Page'].MemberUserID, $parents['Page'].MemberUserID == MemberUserID ? 'Label should be first..' : 'Image should be first...' }}" />
+
+                    <StackLayout class="{{ $parents['Page'].MemberUserID, $parents['Page'].MemberUserID == MemberUserID ? 'align-right' : 'align-left' }}">
+                        <FlexboxLayout class="comment-item">
+                            <Label class="text" textWrap="true" text="Lorem ipsum" />
+                            <StackLayout class="avatar">
+                                <Image src="https://placehold.it/40x40" style="width:40" />
+                            </StackLayout>
+                        </FlexboxLayout>
+                    </StackLayout>
+                </StackLayout>
+
+            </Repeater.itemTemplate>
+        </Repeater>
+
     </StackLayout>
 </Page>
